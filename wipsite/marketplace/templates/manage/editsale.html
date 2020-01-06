@@ -1,0 +1,57 @@
+<!-- Modal -->
+{% import "bootstrap/wtf.html" as wtf %}
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{listingOnSale.name}} Selling Form</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+              {{wtf.quick_form(form)}}
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- Button trigger modal -->
+
+<table class="table table-dark">
+  <thead>
+      <tr>
+      <th colspan="2">{{listingOnSale.name}}    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Select Recipient
+      </button></th>
+      
+      </tr>
+      <tr>
+              <th scope="col">Bider ID</th>
+              <th scope="col">Bider Username</th>
+              <th scope="col">Bider Email</th>
+              <th scope="col">price</th>
+              <th scope="col">timestamp</th>
+      </tr>
+  </thead>
+<tbody>    
+{% for bid in listingOnSale.bids %}
+<tr>
+  <td>{{bid.user_id}}</td>
+  <td>{{bid.user_name}}</td>
+  <td>{{bid.user_email}}</td>
+  <td>{{bid.bid_price}}</td>
+  <td>{{bid.create_at}}</td>
+</tr>
+
+{% endfor %}
+</tbody>
+</table>
+
+
+
+{% endblock %}

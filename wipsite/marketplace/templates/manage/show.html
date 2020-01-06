@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    {% if itemsOnSale %}
+        {% for items in itemsOnSale %}
+            
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+                    <th colspan="2">{{items.name}}{{items.id}}
+                        <a href="{{url_for('manage.manageItem', id=items.id)}}" class="btn btn-danger">Manage Sale</a>
+                    </th>
+                    </tr>
+                    <tr>
+                            <th scope="col">Bider ID</th>
+                            <th scope="col">Bider Username</th>
+                            <th scope="col">Bider Email</th>
+                            <th scope="col">price</th>
+                            <th scope="col">timestamp</th>
+                    </tr>
+                </thead>
+            <tbody>    
+            {% for bidInfo in items.bids %}
+            <tr>
+                <td>{{bidInfo.user_id}}</td>
+                <td>{{bidInfo.user_name}}</td>
+                <td>{{bidInfo.user_email}}</td>
+                <td>{{bidInfo.bid_price}}</td>
+                <td>{{bidInfo.create_at}}</td>
+            </tr>
+
+            {% endfor %}
+            </tbody>
+            
+        {% endfor %}
+            </table>
+    {% endif %}
+
+{% endblock %}

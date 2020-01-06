@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+{% import "bootstrap/wtf.html" as wtf %}
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.0/css/font-awesome.min.css">
+        <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+        <title>DVD DownUnder</title>
+        
+    </head>
+<body>
+
+<!-- NAV BAR -->
+<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+    <div class = "container-fluid">
+        <a class ="navbar-brand" href="/">
+                <img alt="Brand"src="{{url_for('static', filename='image/logo.png')}}" >DVD DownUnder
+        </a>
+        <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" 
+        data-target="#navbarResponsive">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <!--input class="form-control mr-sm-2" type="search" placeholder="Choose A Category" aria-label ="Search"-->    
+                <li class="nav-item dropdown aligndropdown">
+                    <button class="btn btn-default my-sm-0 dropdown-toggle text-center aligndropdown" style="font-size : 22px" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-cd" style="margin-right: 4px;"></span>Browse Movie Categories
+                    </button>
+                        <div class="dropdown-menu" style="width:100%;" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item aligndropdown" href="https://dvdmarketplace.herokuapp.com/search/Action">Action</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item aligndropdown" href="https://dvdmarketplace.herokuapp.com/search/Adventure">Adventure</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item aligndropdown" href="https://dvdmarketplace.herokuapp.com/search/Romance">Romance</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item aligndropdown" href="https://dvdmarketplace.herokuapp.com/search/Kids">Kids</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item aligndropdown" href="https://dvdmarketplace.herokuapp.com/search/Horror">Horror</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item aligndropdown" href="https://dvdmarketplace.herokuapp.com/search/Sci-Fi">Science-Fiction</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item aligndropdown" href="https://dvdmarketplace.herokuapp.com/search/Drama">Drama</a>
+                        </div>
+                </li>
+            <ul class="navbar-nav ml-auto">
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="/listings/create">Add a Listing</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/manage">My Listings</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/history">History</a>
+                </li>
+                {% if current_user.is_authenticated %} 
+                <li>
+                <a class="nav-item nav-link disabled text-muted" href="#"><span>Welcome, {{ current_user.name }}</span></a> 
+                </li>
+                <li>
+                <a class="nav-item nav-link" href="{{ url_for('auth.logout') }}">Log Out</a> 
+                </li>
+                {% else %} 
+                <li>
+                <a class="nav-item nav-link" href="{{ url_for('auth.register') }}">Register</a> 
+                </li>
+                <li>
+                <a class="nav-item nav-link" href="{{ url_for('auth.login') }}">Log In</a> 
+                </li>
+                {% endif %} 
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="jumbotron" style="margin-bottom:0px; background-image: url('https://risingvoicesfilm.com/wp-content/uploads/2015/02/Rising-Voices-DVD-Cover-Background-1-with-native-american.jpg');">
+    <div class="container view-item">
+    {% block content %}
+
+    {% endblock %}
+    </div>
+</div>
+        <!-- Connect -->
+        <hr>
+        <div class="connect-footer container-fluid padding">
+            <div class="row text-center padding">
+                <div class="col-12">
+                    <h2>Connect</h2>
+                </div>
+                <div class ="col-12 social padding">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <footer>
+            <div class="container-fluid padding">
+                <div class="row text-center">
+                    <div class="col-md-4">
+                        <img src="{{url_for('static', filename='image/logo2.png')}}">
+                        <h2>DVD DownUnder</h2>
+                        <hr class="light">
+                        <p>dvd-downunder@email.com.au</p>
+                        <p>123 Imaginary Street</p>
+                        <p>Brissy, QLD 1000</p>
+                    </div>
+                    <div class="col-md-4">
+                        <hr class="light">
+                        <h5>Contact hours</h5>
+                        <hr class="light">
+                        <p>Monday: 9am - 7pm</p>
+                        <p>Tuesday: 9am - 7pm</p>
+                        <p>Saturday: Closed</p>
+                    </div>
+                    <div class="col-md-4">
+                        <hr class="light">
+                        <h5>Mission</h5>
+                        <hr class="light">
+                        <p>DVD DownUnder is all about getting you the best DVDs from Downunder for the best price as soon as possible</p>
+                    </div>
+                    <div class="col-12">
+                        <hr class="light">
+                        <h5>&copy; dvd-downunder.com</h5>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</body>
+</html>

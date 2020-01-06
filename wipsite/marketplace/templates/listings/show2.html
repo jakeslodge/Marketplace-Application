@@ -1,0 +1,88 @@
+{% extends 'base.html' %}  
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}  
+                <h1>View Item</h1>
+                <hr> 
+                <div class="row">
+                    <div class="col">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col text-center">
+                                        <p4>{{listing.name}}</p4>
+                                    <hr>
+                                </div>
+                            </div> 
+                            <div class="row ">
+                                <div class="col-sm-12 col-md-6 text-center">
+                                        <div id="theCarousel" class="carousel slide" data-ride="carousel">
+                                                <ul class="carousel-indicators">
+                                                    <li data-target="#theCarousel" data-slide-to="0" class="active"></li>
+                                                    <li data-target="#theCarousel" data-slide-to="1"></li>
+                                                </ul>
+                                                <div class="carousel-inner carousel1">
+                                                    <div class="carousel-item active">
+                                                        <img src="{{listing.image}}">
+                                                        <div class="carousel-caption carousel1cap">
+                                                        </div>
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                        <img src="{{listing.image}}">
+                                                        <div class="carousel-caption carousel1cap">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <a href="#theCarousel" class="carousel-control left rounded-edges" data-slide="prev">
+                                                <span class="glyphicon glyphicon-chevron-left"></span>
+                                            </a>
+                                            <a href="#theCarousel" class="carousel-control right rounded-edges" data-slide="next">
+                                                <span class="glyphicon glyphicon-chevron-right"></span>
+                                            </a>
+                                    <!-- 
+                                    <div class="card border-0 shadow">
+                                    <a hef="#"><img src="https://webimg.secondhandapp.com/w-i-mgl/5d46e07bc5edf4219ae6f451" class="card-img-top" alt="..."></a> 
+                                    </div> -->
+                                </div>
+                                <div class="col-sm-12 col-md-6 text-center">
+                                    <div class="col text-center listing">
+                                        <h3>Bidding Price: {{listing.price}} AUD</h3>
+                                        <p3>Availability: 
+                                            {% if listing.availability == 0 %}
+                                            Sold
+                                            {% endif %}
+                                            {% if listing.availability == 1 %}
+                                                Available
+                                            {% endif %}  
+                                        </p3><br>
+                                        <p3>Genre: {{listing.genre}}</p3><br>
+                                        <p3>Condition: Good</p3><br><br>
+                                        <!-- show the bidding form-->
+                                        {% if listing.owner_id != USERID %}
+                                        {{wtf.quick_form(BidForm)}}
+                                        {% endif %}
+                                        <hr>
+                                        <p4>Details</p4><br><br>
+                                        <p2>{{listing.description}}
+                                        </p2>
+                                    </div>
+                                </div> 
+                                <hr>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col text-center">
+                                    <p4>Seller Information</p4><br>
+                                    <p2>User: {{listing.owner_name}}</p2><br>
+                                    <p2>Location: Ipswich, QLD, Australia</p2><br>
+                                    <p2>Star Rating: 4.5/5(out of 6 people)</p2><br><br>
+                                    <button type="button" class="btn btn-secondary">More info</button>
+                                    <button type="button" class="btn btn-secondary">View Reviews</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}  

@@ -1,0 +1,10 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{{listing.id}}
+{{listing.name}}
+{{listing.owner_name}}
+{{listing.description}}
+{{listing.price}}
+{{listing.image}}
+
+<!-- show the bidding form-->
+{{wtf.quick_form(BidForm)}}

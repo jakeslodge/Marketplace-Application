@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+<table class ="table table-dark">
+    <thead>
+        <tr>
+            <th colspan="2"> Sold Items
+            </th>
+        </tr>
+        <tr>
+            <th scope="col">Item Sold</th>
+            <th scope="col">Sold To</th>
+            <th scope="col">Sold For</th>
+            <th scope="col">Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+        {% for transaction in sold %}
+        <tr>
+        <td>{{transaction.item_name}}</td>
+        <td>{{transaction.buyer_name}}</td>
+        <td>{{transaction.sold_for}}</td>
+        <td>{{transaction.sold_at}}</td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+
+<table class ="table table-dark">
+        <thead>
+            <tr>
+                <th colspan="2"> Bought Items
+                </th>
+            </tr>
+            <tr>
+                <th scope="col">Item Bought</th>
+                <th scope="col">Bought From</th>
+                <th scope="col">Sold For</th>
+                <th scope="col">Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            {% for transaction in bought %}
+            <tr>
+            <td>{{transaction.item_name}}</td>
+            <td>{{transaction.seller_name}}</td>
+            <td>{{transaction.sold_for}}</td>
+            <td>{{transaction.sold_at}}</td>
+            </tr>
+            {% endfor %}
+    
+        </tbody>
+    </table>
+
+{% endblock %}
